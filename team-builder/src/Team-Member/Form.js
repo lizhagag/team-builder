@@ -1,63 +1,67 @@
 import React, { useState } from 'react';
 
 const Form = props => {
-  const [data, setData] = useState({
-    TeamName: "",
-    email: "",
-    role: ""
-  })
+  const [TeamName, setTeamName] = useState("")
+  const handleTeamName = event => setTeamName(event.target.value);
 
-  const changeHandler = (event) => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value
-    })
+  const [email, setEmail] = useState("")
+  const handleEmail = event => setEmail(event.target.value);
+  
+  const [role, setRole] = useState("")
+  const handleRole = event => setRole(event.target.value);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (TeamName && email) {
+      props.setTeam([...props.team, {TeamName, email}])
+    }
   }
 
   return (
     <div>
-    <form onSubmit={(event) => {
-
-      event.preventDefault()
-
-      props.setNewInfo(data)
-      console.log(data)
-
-      setData({TeamName: "", email: "", role: ""})
-    }}
-    >
+    <form onSubmit={handleSubmit}>
       <label htmlFor="TeamName">Name:</label>
       <input 
         id="TeamName" 
         type="text" 
         name="TeamName" 
         placeholder="Please Enter Your Name"
-        value={data.TeamName}
-        onChange={changeHandler}
+        value={TeamName}
+        onChange={handleTeamName}
         />
         <br />
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Email:</label>
         <input
           id="email"
           type="text"
           name="email"
           placeholder="Please Enter Your Email"
-          value={data.email}
-          onChange={changeHandler}
+          value={email}
+          onChange={handleEmail}
         />
         <br />
 
         <label htmlFor="role">Role:</label>
-        <input 
+        <input
           id="role"
           type="text"
           name="role"
-          placeholder="Your Role In Our Team"
-          value={data.role}
-          onChange={changeHandler}
-        /> 
-      <button type="submit">Click to Submit!</button>
+          placeholder="Please Enter Your Role"
+          value={role}
+          onChange={handleRole}
+        />
+
+        <br />
+
+        <label htmlFor="submit">
+        <input
+          id="submit"
+          type="submit"
+          name="submit"
+        />
+        </label>
+
     </form>
     </div>
     );

@@ -3,9 +3,9 @@ import React from 'react'
 function MyMembers(props) {
     return (
     <div>
-        {props.MyMembers.map((data) => (
+        {props.team.map((data) => (
             <div>
-                <h2>{data.teamName}</h2>
+                <h2>My Name : {data.teamName}</h2>
                 <p>{data.email}</p>
                 <p>{data.role}</p>
             </div>
