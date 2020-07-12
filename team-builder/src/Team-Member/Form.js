@@ -13,8 +13,8 @@ const Form = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (TeamName && email) {
-      props.setTeam([...props.team, {TeamName, email}])
+    if (TeamName && email && role) {
+      props.setTeam([...props.team, {TeamName, email, role}])
     }
     resetForm();
   }
@@ -27,8 +27,9 @@ const Form = props => {
 
   return (
     <div>
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="TeamName">Name:</label>
+    <form onSubmit={handleSubmit} className="FormStyle">
+    <h1>New Team Members</h1>
+    <p>Enter Your Member Information Here</p>
       <input 
         id="TeamName" 
         type="text" 
@@ -39,7 +40,6 @@ const Form = props => {
         />
         <br />
 
-        <label htmlFor="email">Email:</label>
         <input
           id="email"
           type="text"
@@ -50,7 +50,6 @@ const Form = props => {
         />
         <br />
 
-        <label htmlFor="role">Role:</label>
         <input
           id="role"
           type="text"
@@ -71,7 +70,6 @@ const Form = props => {
         </label>
 
     </form>
-
     </div>
     );
 };
