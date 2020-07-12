@@ -16,7 +16,14 @@ const Form = props => {
     if (TeamName && email) {
       props.setTeam([...props.team, {TeamName, email}])
     }
+    resetForm();
   }
+
+  const resetForm = () => {
+    setTeamName("");
+    setEmail("");
+    setRole("");
+  };
 
   return (
     <div>
